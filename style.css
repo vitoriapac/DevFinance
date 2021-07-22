@@ -45,7 +45,7 @@ header {
 
 /*Balance*/
 #balance {
-  max-width: -8rem;
+  margin-top: -8rem;
 }
 
 #balance h2 {
@@ -88,12 +88,12 @@ header {
   color: #969cb3;
 }
 
-table tr {
+table tbody tr {
   opacity: 0.7;
   transition: 0.3s ease;
 }
 
-table tr:hover {
+table tbody tr:hover {
   opacity: 1;
 }
 
@@ -115,7 +115,22 @@ table td {
   padding: 1rem 2rem;
 }
 
+td.description {
+  color: var(--color-dark);
+}
+
+td.income {
+  color: #12a454;
+}
+
+td.expense {
+  color: #e92929;
+}
+
 /*Footer*/
 footer {
   text-align: center;
+  padding: 4rem 0 2rem;
+  color: var(--color-dark);
+  opacity: 0.6;
 }
