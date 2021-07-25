@@ -39,7 +39,14 @@ const transactions = [
 
 //Calculo dos cards
 const Transaction = {
-  all: transactions, //atalho p/ todas as transações
+  //atalho p/ todas as transações
+  all: transactions,
+
+  //Adiciona novas transações
+  add(transaction) {
+    Transaction.all.push(transaction)
+    App.reload()
+  },
 
   incomes() {
     //somar as entradas
@@ -103,6 +110,10 @@ const DOM = {
     document.getElementById('totalDisplay').innerHTML = Utils.formatCurrency(
       Transaction.total()
     )
+  },
+
+  clearTransactions() {
+    DOM.transactionsContainer.innerHTML = ''
   }
 }
 
@@ -123,8 +134,26 @@ const Utils = {
   }
 }
 
-transactions.forEach(function (transaction) {
-  DOM.addTransaction(transaction)
-})
+const App = {
+  init() {
+    Transaction.all.forEach(transaction => {
+      DOM.addTransaction(transaction)
+    })
 
-DOM.updateBalance()
+    DOM.updateBalance()
+  },
+  reload() {
+    DOM.clearTransactions()
+    App.init()
+  }
+}
+
+//Inicializa a calculadora
+App.init()
+
+Transaction.add({
+  id: 25,
+  description: 'curso',
+  amount: -2000,
+  date: '24/01/2021'
+})
